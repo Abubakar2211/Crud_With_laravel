@@ -17,7 +17,7 @@ class StudentController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function detail()
     {
 
     }
@@ -63,17 +63,33 @@ class StudentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $std['data'] = Student::find($id);
+        return view('update',$std);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function upd(Request $req,$id)
     {
-        //
+        $std = Student::find($id);
+        $std->name = $req->input('name');
+        $std->email = $req->input('email');
+        $std->password = $req->input('password');
+
+
+        if ($req->hasFile('image')) {
+            $img = $req->file('image');
+            $imgname = time() . '.' . $img->getClientOriginalExtension();
+            $img->move(public_path('uploads/admin/'), $imgname);
+            $std->image = $imgname;
+        } else {
+            $std->image = $std->image;
+        }
+        $std->update();
+        return redirect('view');
     }
 
     /**
@@ -81,6 +97,8 @@ class StudentController extends Controller
      */
     public function destroy(string $id)
     {
-        
+        $std = Student::find($id);
+        $std->delete();
+        return redirect('view');
     }
 }

@@ -15,6 +15,14 @@
 <body>
     <header>
         <!-- place navbar here -->
+
+
+
+
+    </header>
+    <main>
+
+
         <form action="index" enctype="multipart/form-data" method="POST">
             <div class="container bg-dark p-5 my-5 rounded-5 text-white">
                 @csrf
@@ -47,8 +55,7 @@
 
 
 
-    </header>
-    <main></main>
+    </main>
     <footer>
         <!-- place footer here -->
     </footer>

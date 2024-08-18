@@ -37,9 +37,9 @@
                         <td>{{ $item->email }}</td>
                         <td>{{ $item->password }}</td>
                         <td><img src="{{ asset('uploads/admin/' . $item->image) }}" alt="" width="50"></td>
-                        <td>Edit</td>
-                        <td>Detail</td>
-                        <td>Delete</td>
+                        <td><a href="edit/{{$item->id }}" class="btn btn-success"> Edit</td></a>
+                        <td><a href="detail/{{ $item->id }}" class="btn btn-warning"> Detail</td></a>
+                        <td><a href="delete/{{ $item->id }}" class="btn btn-danger">Delete</td></a> 
                     </tr>
                 </tbody>
                 @endforeach
